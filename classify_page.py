@@ -10,7 +10,7 @@ def load_model(path_to_model):
 
 def show_classify_page(model):
     st.title("Biopsy Stomachs classifications")
-    uploaded_file = st.file_uploader(label="Upload an image for classification",type=("jpg", "tif", "jpeg", "png"))
+    uploaded_file = st.file_uploader(label="Upload an image for classification",type=("jpg", "tif", "jpeg", "png"),multiple_files=True)
     if uploaded_file is not None:
         image = Image.open(uploaded_file)
         st.image(image, caption='Uploaded Image.', use_column_width=True)
@@ -24,7 +24,3 @@ def show_classify_page(model):
             st.write("Classifying...")
             classification = model(uploaded_file)
             st.write('Classification:    %s (%.2f%%)' % (classification[1], classification[2]*100))
-            
-
-
-
